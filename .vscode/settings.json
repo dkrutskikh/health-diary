@@ -1,0 +1,31 @@
+{
+    "actionButtons": {
+        "defaultColor": "#ff0034",
+        "loadNpmCommands": false,
+        "reloadButton": "♻️",
+        "commands": [
+            {
+                "name": "Regenerate goldens 🏆",
+                "color": "yellow",
+                "command": "flutter test --update-goldens --tags=golden"
+            },
+            {
+                "name": "Regenerate code 🗒️",
+                "color": "cyan",
+                "command": "./generate.sh"
+            }
+        ]
+    },
+    "cSpell.words": [
+        "bools",
+        "cyclomatic",
+        "goldens",
+        "ints",
+        "mocktail",
+        "nullsafety",
+        "setstate",
+        "tizen",
+        "todos",
+        "unawaited"
+    ]
+}

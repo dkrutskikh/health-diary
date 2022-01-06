@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.dmitrykrutskikh.health_diary_watches_app" version="1.0.0" api-version="4.0" xmlns="http://tizen.org/ns/packages">
-    <profile name="common"/>
+<manifest package="com.dmitrykrutskikh.health_diary_watches_app" version="0.0.0" api-version="4.0" xmlns="http://tizen.org/ns/packages">
+    <profile name="wearable"/>
     <ui-application appid="com.dmitrykrutskikh.health_diary_watches_app" exec="runner" type="capp" multiple="false" nodisplay="false" taskmanage="true" hw-acceleration="on">
         <label>health_diary_watches_app</label>
         <icon>ic_launcher.png</icon>

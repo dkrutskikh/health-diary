@@ -4,6 +4,7 @@ analyzer:
   exclude:
     - "build/**"
     - "script/**"
+    - "tizen/**"
     - "**/*.g.dart"
     - "**/*.freezed.dart"
   language:
