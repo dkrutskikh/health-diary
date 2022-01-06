@@ -1,0 +1,29 @@
+name: health_diary_watches_app
+description: The application can help you get fit, monitoring your progress along the way.
+publish_to: "none"
+version: 0.0.0
+
+environment:
+  sdk: ">=2.15.0 <3.0.0"
+  flutter: ">=2.8.0"
+
+dependencies:
+  device_info_plus_tizen: ^1.1.0
+  elementary: ^1.0.0
+  flex_color_scheme: ^4.1.1
+
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  dart_code_metrics: ^4.8.0
+  flutter_lints: ^1.0.0
+
+  flutter_test:
+    sdk: flutter
+
+  golden_toolkit: ^0.12.0
+  mocktail: ^0.2.0
+
+flutter:
+  uses-material-design: true

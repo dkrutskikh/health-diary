@@ -1,0 +1,144 @@
+name: "Build watches application"
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/build_watches_app.yaml"
+      - "packages/health_diary_watches_app/lib/**"
+      - "packages/health_diary_watches_app/test/**"
+      - "packages/health_diary_watches_app/analysis_options.yaml"
+      - "packages/health_diary_watches_app/pubspec.yaml"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/build_watches_app.yaml"
+      - "packages/health_diary_watches_app/lib/**"
+      - "packages/health_diary_watches_app/test/**"
+      - "packages/health_diary_watches_app/analysis_options.yaml"
+      - "packages/health_diary_watches_app/pubspec.yaml"
+
+jobs:
+  analysis:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: packages/health_diary_watches_app
+
+    steps:
+      - name: Validate semantic changelog update
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: GetStream/verify-semantic-changelog-update@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+
+      - name: Install Flutter Tizen
+        run: |
+          mkdir $GITHUB_WORKSPACE/flutter-tizen
+          git clone https://github.com/flutter-tizen/flutter-tizen.git $GITHUB_WORKSPACE/flutter-tizen
+          export PATH=$GITHUB_WORKSPACE/flutter-tizen/bin:$PATH
+          flutter-tizen doctor -v
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run dependency validator
+        run: |
+          flutter pub global activate dependency_validator
+          flutter pub global run dependency_validator:dependency_validator
+
+      - name: Analyze project
+        run: flutter analyze --no-pub .
+
+      - name: dart-code-metrics
+        uses: dart-code-checker/dart-code-metrics-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          folders: "lib, test"
+          relative_path: "packages/health_diary_watches_app"
+          pull_request_comment: true
+
+      - name: Verify formatting
+        run: flutter format --set-exit-if-changed .
+
+  testing:
+    needs: analysis
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: packages/health_diary_watches_app
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install lcov
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lcov
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run tests
+        run: flutter test --exclude-tags=golden --reporter=expanded --coverage
+
+      - name: Publish test results
+        uses: dorny/test-reporter@v1
+        if: success() || failure() # run this step even if previous step failed
+        with:
+          name: Tests result
+          path: packages/health_diary_watches_app/reports/tests.json
+          reporter: dart-json
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  golden_testing:
+    needs: analysis
+    runs-on: macos-11
+
+    defaults:
+      run:
+        working-directory: packages/health_diary_watches_app
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run tests
+        run: flutter test --tags=golden --reporter=expanded
+
+      - name: Publish test results
+        uses: dorny/test-reporter@v1
+        if: success() || failure() # run this step even if previous step failed
+        with:
+          name: Golden Tests result
+          path: packages/health_diary_watches_app/reports/tests.json
+          reporter: dart-json
+          token: ${{ secrets.GITHUB_TOKEN }}
