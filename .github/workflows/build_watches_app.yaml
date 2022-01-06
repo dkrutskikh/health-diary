@@ -80,7 +80,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: packages/analytics
+        working-directory: packages/health_diary_watches_app
 
     steps:
       - name: Checkout
@@ -114,6 +114,10 @@ jobs:
   golden_testing:
     needs: analysis
     runs-on: macos-11
+
+    defaults:
+      run:
+        working-directory: packages/health_diary_watches_app
 
     steps:
       - name: Checkout
