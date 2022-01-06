@@ -27,7 +27,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: packages/analytics
+        working-directory: packages/health_diary_watches_app
 
     steps:
       - name: Validate semantic changelog update
