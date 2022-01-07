@@ -68,6 +68,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           folders: "lib, test"
           relative_path: "packages/health_diary_watches_app"
+          check_unused_files: true
           pull_request_comment: true
 
       - name: Verify formatting
