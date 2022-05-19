@@ -63,7 +63,7 @@ jobs:
         run: flutter analyze --no-pub .
 
       - name: dart-code-metrics
-        uses: dart-code-checker/dart-code-metrics-action@v1
+        uses: dart-code-checker/dart-code-metrics-action@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           folders: "lib, test"
