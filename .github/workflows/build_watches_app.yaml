@@ -63,14 +63,17 @@ jobs:
         run: flutter analyze --no-pub .
 
       - name: dart-code-metrics
-        uses: dart-code-checker/dart-code-metrics-action@v1
+        uses: dart-code-checker/dart-code-metrics-action@v2.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           folders: "lib, test"
           relative_path: "packages/health_diary_watches_app"
+          pull_request_comment: true
+          fatal_warnings: true
+          fatal_performance: true
+          fatal_style: true
           check_unused_files: true
           check_unused_files_folders: "lib"
-          pull_request_comment: true
 
       - name: Verify formatting
         run: flutter format --set-exit-if-changed .
