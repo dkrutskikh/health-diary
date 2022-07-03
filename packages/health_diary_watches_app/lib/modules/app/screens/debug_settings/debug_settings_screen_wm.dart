@@ -17,11 +17,23 @@ class DebugSettingsScreenWM
   );
 
   final _deviceName = ValueNotifier<String>('');
+  final _deviceOS = ValueNotifier<String>('');
+  final _isPhysicalDevice = ValueNotifier<bool?>(null);
   final _deviceMediaQuery =
       ValueNotifier<MediaQueryData>(const MediaQueryData());
+  final _packageVersion = ValueNotifier<String?>(null);
+
+  String get branchName => model.branchName;
 
   ValueListenable<String> get deviceName => _deviceName;
+
+  ValueListenable<String> get deviceOS => _deviceOS;
+
+  ValueListenable<bool?> get isPhysicalDevice => _isPhysicalDevice;
+
   ValueListenable<MediaQueryData> get deviceMediaQuery => _deviceMediaQuery;
+
+  ValueListenable<String?> get packageVersion => _packageVersion;
 
   DebugSettingsScreenWM(super.model);
 
@@ -31,6 +43,15 @@ class DebugSettingsScreenWM
 
     model.fetchDeviceModel().then((model) {
       _deviceName.value = model;
+    });
+    model.fetchDeviceOS().then((osVersion) {
+      _deviceOS.value = osVersion;
+    });
+    model.isPhysicalDevice().then((isPhysical) {
+      _isPhysicalDevice.value = isPhysical;
+    });
+    model.fetchPackageInfo().then((info) {
+      _packageVersion.value = info.version;
     });
 
     WidgetsBinding.instance.addObserver(this);
@@ -51,6 +72,8 @@ class DebugSettingsScreenWM
 
     _updateMediaQueryData();
   }
+
+  double trimNumber(num value) => (value * 1000).ceilToDouble() / 1000;
 
   void _updateMediaQueryData() {
     _deviceMediaQuery.value =

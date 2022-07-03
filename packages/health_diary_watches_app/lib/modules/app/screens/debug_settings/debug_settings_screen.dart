@@ -1,5 +1,6 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
+import 'package:health_diary_watches_app/widgets/ui_kit/stub_widget.dart';
 
 import 'debug_settings_screen_builder.dart';
 import 'debug_settings_screen_wm.dart';
@@ -22,21 +23,38 @@ class DebugSettingsScreen extends ElementaryWidget<DebugSettingsScreenWM> {
           centerTitle: true,
         ),
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: ListView(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Align(
-                  child: ValueListenableBuilder<String>(
-                    valueListenable: wm.deviceName,
-                    builder: (_, state, __) => Text('Device: $state'),
-                  ),
+                Text('Branch name: ${wm.branchName}'),
+                ValueListenableBuilder<String?>(
+                  valueListenable: wm.packageVersion,
+                  builder: (_, version, __) => version != null
+                      ? Text('App version: $version')
+                      : const StubWidget(),
+                ),
+                ValueListenableBuilder<String>(
+                  valueListenable: wm.deviceName,
+                  builder: (_, state, __) => Text('Device: $state'),
+                ),
+                ValueListenableBuilder<String>(
+                  valueListenable: wm.deviceOS,
+                  builder: (_, state, __) => Text('Operation system: $state'),
+                ),
+                ValueListenableBuilder<bool?>(
+                  valueListenable: wm.isPhysicalDevice,
+                  builder: (_, state, __) => state != null
+                      ? Text('Physical device: $state')
+                      : const StubWidget(),
                 ),
                 const SizedBox(height: 8),
-                Align(
-                  child: ValueListenableBuilder<MediaQueryData>(
-                    valueListenable: wm.deviceMediaQuery,
-                    builder: (_, state, __) => Column(
+                ValueListenableBuilder<MediaQueryData>(
+                  valueListenable: wm.deviceMediaQuery,
+                  builder: (_, state, __) {
+                    final deviceSize = state.size;
+
+                    return Column(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -45,32 +63,26 @@ class DebugSettingsScreen extends ElementaryWidget<DebugSettingsScreenWM> {
                             Text(
                               'screen:\n'
                               '\n'
-                              'width: ${state.size.width}\n'
-                              'height: ${state.size.height}\n'
-                              'pixel ratio: ${state.devicePixelRatio}\n'
-                              'width in pix: ${state.size.width * state.devicePixelRatio}\n'
-                              'height in pix: ${state.size.height * state.devicePixelRatio}',
-                              softWrap: true,
+                              'width: ${wm.trimNumber(deviceSize.width)}\n'
+                              'height: ${wm.trimNumber(deviceSize.height)}\n'
+                              'pixel ratio: ${wm.trimNumber(state.devicePixelRatio)}\n'
+                              'width in pix: ${wm.trimNumber(deviceSize.width * state.devicePixelRatio)}\n'
+                              'height in pix: ${wm.trimNumber(deviceSize.height * state.devicePixelRatio)}',
                             ),
                             Text(
                               'screen safe area:\n'
                               '\n'
-                              'left: ${state.padding.left}\n'
-                              'top: ${state.padding.top}\n'
-                              'right: ${state.padding.right}\n'
-                              'bottom: ${state.padding.bottom}',
-                              softWrap: true,
-                              overflow: TextOverflow.clip,
+                              'left: ${wm.trimNumber(state.padding.left)}\n'
+                              'top: ${wm.trimNumber(state.padding.top)}\n'
+                              'right: ${wm.trimNumber(state.padding.right)}\n'
+                              'bottom: ${wm.trimNumber(state.padding.bottom)}',
                             ),
                           ],
                         ),
-                        const SizedBox(height: 8),
-                        Text('text scale: ${state.textScaleFactor}'),
                       ],
-                    ),
-                  ),
+                    );
+                  },
                 ),
-                const Divider(),
               ],
             ),
           ),
