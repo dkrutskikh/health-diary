@@ -13,34 +13,30 @@ class DebugSettingsScreen extends ElementaryWidget<DebugSettingsScreenWM> {
   }) : super(wmFactory, key: key);
 
   @override
-  Widget build(DebugSettingsScreenWM wm) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Debug Settings',
-          style: DebugSettingsScreenWM.titleTextStyle,
+  Widget build(DebugSettingsScreenWM wm) => Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Debug Settings',
+            style: DebugSettingsScreenWM.titleTextStyle,
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: ListView(
-            children: [
-              Align(
-                child: ValueListenableBuilder<String>(
-                  valueListenable: wm.deviceName,
-                  builder: (_, state, __) {
-                    return Text('Device: $state');
-                  },
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: ListView(
+              children: [
+                Align(
+                  child: ValueListenableBuilder<String>(
+                    valueListenable: wm.deviceName,
+                    builder: (_, state, __) => Text('Device: $state'),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Align(
-                child: ValueListenableBuilder<MediaQueryData>(
-                  valueListenable: wm.deviceMediaQuery,
-                  builder: (_, state, __) {
-                    return Column(
+                const SizedBox(height: 8),
+                Align(
+                  child: ValueListenableBuilder<MediaQueryData>(
+                    valueListenable: wm.deviceMediaQuery,
+                    builder: (_, state, __) => Column(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -71,15 +67,13 @@ class DebugSettingsScreen extends ElementaryWidget<DebugSettingsScreenWM> {
                         const SizedBox(height: 8),
                         Text('text scale: ${state.textScaleFactor}'),
                       ],
-                    );
-                  },
+                    ),
+                  ),
                 ),
-              ),
-              const Divider(),
-            ],
+                const Divider(),
+              ],
+            ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }

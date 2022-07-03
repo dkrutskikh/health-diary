@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
-import 'package:health_diary_watches_app/modules/debug/screens/settings/debug_settings_screen.dart';
-import 'package:health_diary_watches_app/modules/debug/screens/settings/debug_settings_screen_model.dart';
-import 'package:health_diary_watches_app/modules/debug/screens/settings/debug_settings_screen_wm.dart';
+import 'package:health_diary_watches_app/modules/app/screens/debug_settings/debug_settings_screen.dart';
+import 'package:health_diary_watches_app/modules/app/screens/debug_settings/debug_settings_screen_model.dart';
+import 'package:health_diary_watches_app/modules/app/screens/debug_settings/debug_settings_screen_wm.dart';
 import 'package:health_diary_watches_app/services/theme_service.dart';
 import 'package:mocktail/mocktail.dart';
 

@@ -23,7 +23,7 @@ class DebugSettingsScreenWM
   ValueListenable<String> get deviceName => _deviceName;
   ValueListenable<MediaQueryData> get deviceMediaQuery => _deviceMediaQuery;
 
-  DebugSettingsScreenWM(DebugSettingsScreenModel model) : super(model);
+  DebugSettingsScreenWM(super.model);
 
   @override
   void initWidgetModel() {
