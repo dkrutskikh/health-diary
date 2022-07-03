@@ -33,14 +33,14 @@ class DebugSettingsScreenWM
       _deviceName.value = model;
     });
 
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
 
     _updateMediaQueryData();
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
 
     super.dispose();
   }
@@ -53,10 +53,7 @@ class DebugSettingsScreenWM
   }
 
   void _updateMediaQueryData() {
-    final bindings = WidgetsBinding.instance;
-
-    if (bindings != null) {
-      _deviceMediaQuery.value = MediaQueryData.fromWindow(bindings.window);
-    }
+    _deviceMediaQuery.value =
+        MediaQueryData.fromWindow(WidgetsBinding.instance.window);
   }
 }
