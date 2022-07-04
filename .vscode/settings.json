@@ -13,7 +13,7 @@
                 "name": "Regenerate code 🗒️",
                 "color": "cyan",
                 "command": "./generate.sh"
-            }
+            },
         ]
     },
     "cSpell.words": [
@@ -29,5 +29,24 @@
         "tizen",
         "todos",
         "unawaited"
-    ]
+    ],
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.expand": false,
+    "explorer.fileNesting.patterns": {
+        "pubspec.yaml": ".flutter-plugins, .packages, .flutter-plugins-dependencies, .metadata, .packages, pubspec.lock",
+        ".gitignore": ".gitattributes, .gitmodules, .gitmessage, .mailmap, .git-blame*",
+        "*.dart": "$(capture).g.dart, $(capture).freezed.dart",
+    },
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "files.insertFinalNewline": true,
+    },
+    "dart.previewFlutterUiGuides": true,
+    "dart.previewFlutterUiGuidesCustomTracking": true,
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.organizeImports": true,
+    },
 }
