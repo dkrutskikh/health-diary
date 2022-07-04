@@ -14,8 +14,6 @@ class AndroidBuildVersionMock extends Mock implements AndroidBuildVersion {}
 
 class IosDeviceInfoMock extends Mock implements IosDeviceInfo {}
 
-class IosUtsnameMock extends Mock implements IosUtsname {}
-
 class WebBrowserInfoMock extends Mock implements WebBrowserInfo {}
 
 class LinuxDeviceInfoMock extends Mock implements LinuxDeviceInfo {}
@@ -28,7 +26,6 @@ void main() {
     late AndroidDeviceInfoMock androidDeviceInfo;
     late AndroidBuildVersionMock androidBuildVersion;
     late IosDeviceInfoMock iOSDeviceInfo;
-    late IosUtsnameMock iOSUtsname;
     late WebBrowserInfoMock webDeviceInfo;
     late LinuxDeviceInfoMock linuxDeviceInfo;
 
@@ -39,7 +36,6 @@ void main() {
       androidDeviceInfo = AndroidDeviceInfoMock();
       androidBuildVersion = AndroidBuildVersionMock();
       iOSDeviceInfo = IosDeviceInfoMock();
-      iOSUtsname = IosUtsnameMock();
       webDeviceInfo = WebBrowserInfoMock();
       linuxDeviceInfo = LinuxDeviceInfoMock();
     });
