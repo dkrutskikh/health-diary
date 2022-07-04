@@ -48,17 +48,5 @@ void main() {
 
       await multiScreenGolden(tester, 'debug_settings_screen');
     });
-
-    testWidgets('widget test', (tester) async {
-      await tester.pumpWidgetBuilder(
-        DebugSettingsScreen(wmFactory: (_) => DebugSettingsScreenWM(modelMock)),
-        wrapper: materialAppWrapper(theme: const ThemeService().lightTheme),
-      );
-
-      expect(find.text('Device: mock device'), findsOneWidget);
-      expect(find.textContaining('screen:'), findsOneWidget);
-      expect(find.textContaining('screen safe area:'), findsOneWidget);
-      expect(find.textContaining('text scale:'), findsOneWidget);
-    });
   });
 }
