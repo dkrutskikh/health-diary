@@ -105,7 +105,12 @@ jobs:
         run: flutter pub get
 
       - name: Run tests
-        run: flutter test --exclude-tags=golden --reporter=expanded --coverage
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        if: success()
+        run: |
+          flutter test --exclude-tags=golden --reporter=expanded --coverage
+          bash <(curl -s https://codecov.io/bash) -f coverage/coverage.lcov
 
       - name: Publish test results
         uses: dorny/test-reporter@v1
@@ -118,7 +123,7 @@ jobs:
 
   golden_testing:
     needs: analysis
-    runs-on: macos-11
+    runs-on: macos-latest
 
     defaults:
       run:

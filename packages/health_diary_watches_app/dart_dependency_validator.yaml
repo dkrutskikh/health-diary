@@ -1,0 +1,6 @@
+exclude:
+  - "tizen/**"
+
+ignore:
+  - dart_code_metrics
+  - package_info_plus_tizen

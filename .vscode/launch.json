@@ -2,18 +2,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Golden",
+            "name": "Watches App",
             "request": "launch",
             "type": "dart",
-            "codeLens": {
-                "for": [
-                    "run-test",
-                    "run-test-file"
-                ]
-            },
+            "program": "lib/main.dart",
             "args": [
-                "--update-goldens"
-            ]
-        }
+                "--dart-define=BRANCH_NAME=`git branch --show-current`"
+            ],
+            "cwd": "packages/health_diary_watches_app"
+        },
     ]
 }

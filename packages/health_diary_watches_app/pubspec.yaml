@@ -8,12 +8,16 @@ environment:
   flutter: ">=3.0.0"
 
 dependencies:
+  device_info_plus: ^4.0.0
   device_info_plus_tizen: ^1.1.0
   elementary: ^1.0.0
   flex_color_scheme: ^5.0.0
 
   flutter:
     sdk: flutter
+
+  package_info_plus: ^1.4.0
+  package_info_plus_tizen: ^1.0.0
 
 dev_dependencies:
   dart_code_metrics: ^4.8.0
