@@ -110,7 +110,9 @@ jobs:
         if: success()
         run: |
           flutter test --exclude-tags=golden --reporter=expanded --coverage
-          bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          chmod +x codecov
+          ./codecov -t ${CODECOV_TOKEN} -f coverage/lcov.info
 
       - name: Publish test results
         uses: dorny/test-reporter@v1
