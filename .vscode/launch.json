@@ -11,5 +11,12 @@
             ],
             "cwd": "packages/health_diary_watches_app"
         },
+        {
+            "name": "Generate uncovered test",
+            "request": "launch",
+            "type": "dart",
+            "program": "tools/builder/bin/generate_uncovered_test.dart",
+            "cwd": "."
+        },
     ]
 }

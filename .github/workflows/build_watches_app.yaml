@@ -100,16 +100,26 @@ jobs:
 
       - name: Run golden tests
         run: |
-          flutter test --tags=golden --reporter=expanded --coverage
+          flutter test --no-pub --tags=golden --reporter=expanded --coverage
           mv coverage/lcov.info coverage/goldens.lcov.info
           mv reports/tests.json reports/goldens.tests.json
 
       - name: Run unit tests
         if: success()
         run: |
-          flutter test --exclude-tags=golden --reporter=expanded --coverage
+          flutter test --no-pub --exclude-tags=golden --reporter=expanded --coverage
           mv coverage/lcov.info coverage/units.lcov.info
           mv reports/tests.json reports/units.tests.json
+
+      - name: Publish tests coverage
+        if: success()
+        run: |
+          cd ../../
+          sh ./tools/generate_uncovered_test.sh
+          cd packages/health_diary_watches_app
+          flutter test --no-pub --coverage test/fake_test.dart
+          mv coverage/lcov.info coverage/uncovered.lcov.info
+          rm reports/tests.json
 
       - name: Publish test results
         uses: dorny/test-reporter@v1.5.0
