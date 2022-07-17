@@ -28,7 +28,8 @@
         "setstate",
         "tizen",
         "todos",
-        "unawaited"
+        "unawaited",
+        "vsync"
     ],
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.expand": false,
