@@ -2,6 +2,8 @@
 
 The application can help you get fit, monitoring your progress along the way.
 
+[![Build Status](https://shields.io/github/workflow/status/dkrutskikh/health-diary/build?logo=github&logoColor=white)](https://github.com/dkrutskikh/health-diary/)
+[![Coverage Status](https://img.shields.io/codecov/c/github/dkrutskikh/health-diary?logo=codecov&logoColor=white)](https://codecov.io/gh/dkrutskikh/health-diary/)
 [![License](https://img.shields.io/github/license/dkrutskikh/health-diary)](https://github.com/dkrutskikh/health-diary/blob/master/LICENSE)
 
 ## Golden tests
