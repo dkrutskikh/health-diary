@@ -12,6 +12,13 @@
             "cwd": "packages/health_diary_watches_app"
         },
         {
+            "name": "Coverage tool",
+            "request": "launch",
+            "type": "dart",
+            "program": "tools/builder/bin/coverage.dart",
+            "cwd": "."
+        },
+        {
             "name": "Generate uncovered test",
             "request": "launch",
             "type": "dart",
