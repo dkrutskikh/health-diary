@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:health_diary_watches_app/modules/workout/screens/set/widgets/set_progress_indicator_utils.dart';
+import 'package:health_diary_watches_app/modules/set/screens/workout/widgets/set_progress_indicator_utils.dart';
 
 const _duration = Duration(seconds: 15);
 

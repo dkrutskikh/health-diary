@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
-import 'package:health_diary_watches_app/modules/workout/screens/set/widgets/set_progress_indicator.dart';
+import 'package:health_diary_watches_app/modules/set/screens/workout/widgets/set_progress_indicator.dart';
 import 'package:health_diary_watches_app/services/theme_service.dart';
 
 const _duration = Duration(seconds: 15);
