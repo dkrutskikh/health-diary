@@ -18,10 +18,12 @@
     },
     "cSpell.words": [
         "bools",
+        "cobertura",
         "cyclomatic",
         "dkrutskikh",
         "goldens",
         "ints",
+        "Lcov",
         "mocktail",
         "nullsafety",
         "pubspec",
