@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:health_diary_watches_app/modules/app/screens/debug_settings/debug_settings_screen.dart';
 import 'package:health_diary_watches_app/services/theme_service.dart';
+
+import '../modules/set/set_module.dart';
 
 class App extends StatelessWidget {
   final ThemeService themeService;
@@ -12,6 +13,6 @@ class App extends StatelessWidget {
         title: 'Flutter Demo',
         theme: themeService.lightTheme,
         darkTheme: themeService.dartTheme,
-        home: const DebugSettingsScreen(),
+        home: SetModule(),
       );
 }
